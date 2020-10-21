@@ -1,0 +1,16 @@
+---
+- name: Applying Role iaas
+  hosts: iaas
+  become: true
+  roles:
+    - iaac
+
+- name: Applying Role issue and printing variables
+  hosts: all
+  become: true
+  roles:
+    - issue
+  tasks:
+    - debug:
+        msg: "Host {{ inventory_hostname }} issue is {{ issue_content.stdout |  replace('\\n', '') | replace('\\l', '') }}"
+

@@ -1,0 +1,10 @@
+---
+- name: Get file content
+  shell: cat /etc/issue
+  register: issue_content
+
+- name: Get hostaname
+  shell: hostname
+  register: target_hostname
+  
+# tasks file for issue

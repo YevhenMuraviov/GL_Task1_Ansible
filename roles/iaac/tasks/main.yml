@@ -1,0 +1,16 @@
+# tasks file for iaac
+---
+
+- name: File existance check (/etc/iaac)
+  stat:
+    path: /etc/iaac
+  register: result
+
+- name: Create file /etc/iaac with rigths 0500 if does not exist
+  file:
+    path: /etc/iaac
+    mode: '0500'
+    state: touch
+  when: result.stat.exists == False
+
+
